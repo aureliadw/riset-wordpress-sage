@@ -7,6 +7,7 @@
   @php(do_action('get_header'))
   @php(wp_head())
   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <link href="https://www.fontshare.com/fonts/plus-jakarta-sans" rel="stylesheet">
 </head>
 
 <body @php(body_class())>
@@ -31,7 +32,7 @@
       {{ __('Skip to content', 'sage') }}
     </a>
 
-    @include('sections.header')
+
 
     <main id="main" class="bg-primary mx-auto w-full max-w-screen-xl px-4 md:py-12">
       @yield('content')

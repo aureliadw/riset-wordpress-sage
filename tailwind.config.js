@@ -6,11 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
-        fontFamily: {
-            crimson: ['Crimson Text', 'serif'],
-            roboto: ['Roboto']
-
-      }
+      fontFamily: {
+        crimson: ['Crimson Text', 'serif'],
+        roboto: ['Roboto', 'sans-serif'],
+        cabinet: ['"Cabinet Grotesk"', 'sans-serif'], 
+        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
     },
   },
   plugins: [
