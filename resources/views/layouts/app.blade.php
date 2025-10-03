@@ -7,6 +7,8 @@
   @php(do_action('get_header'))
   @php(wp_head())
   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  {{-- Swiper CSS --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link href="https://www.fontshare.com/fonts/plus-jakarta-sans" rel="stylesheet">
 </head>
 
@@ -32,7 +34,8 @@
       {{ __('Skip to content', 'sage') }}
     </a>
 
-
+    {{-- Navbar --}}
+    @include('sections.header')
 
     <main id="main" class="bg-primary mx-auto w-full max-w-screen-xl px-4 md:py-12">
       @yield('content')
@@ -42,6 +45,8 @@
   @php(do_action('get_footer'))
   @php(wp_footer())
   @stack('scripts')
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>

@@ -7,12 +7,19 @@
   'oldPrice' => '',
   'price' => '',
   'description' => '',
+  'link' => ''
 ])
 
-<div class="bg-white rounded-2xl shadow-md overflow-hidden max-w-xs">
+<div {{ $attributes->merge(['class' => 'bg-white rounded-2xl shadow-md overflow-hidden max-w-xs transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer']) }}>
   {{-- Gambar + Badge --}}
-  <div class="relative">
-    <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-40 object-cover">
+  <div class="relative overflow-hidden">
+    @if($link)
+      <a href="{{ $link }}">
+        <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-40 object-cover transition-transform duration-500 hover:scale-110">
+      </a>
+    @else
+      <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-40 object-cover transition-transform duration-500 hover:scale-110">
+    @endif
 
     {{-- Badge dinamis --}}
     @if(!empty($badges))
@@ -28,9 +35,16 @@
 
   {{-- Konten --}}
   <div class="p-4">
-    {{-- Nama + Rating --}}
     <div class="flex items-center justify-between mb-1">
-      <h3 class="font-semibold text-gray-800">{{ $title }}</h3>
+      @if($link)
+        <a href="{{ $link }}" class="font-semibold text-gray-800 hover:text-[#C1442E] transition">
+          {{ $title }}
+        </a>
+      @else
+        <h3 class="font-semibold text-gray-800">{{ $title }}</h3>
+      @endif
+
+      {{-- Rating --}}
       @if($rating)
         <div class="flex items-center text-yellow-500 text-sm">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -54,10 +68,10 @@
     {{-- Harga --}}
     <div class="mb-2">
       @if($oldPrice)
-        <span class="text-sm text-gray-500 line-through mr-2">Rp {{ $oldPrice }}</span>
+        <span class="text-sm text-gray-500 line-through mr-2">Rp {{ number_format($oldPrice, 0, ',', '.') }}</span>
       @endif
       @if($price)
-        <span class="text-red-600 font-bold">Rp {{ $price }}</span>
+        <span class="text-red-600 font-bold">Rp {{ number_format($price, 0, ',', '.') }}</span>
       @endif
     </div>
 
@@ -68,7 +82,7 @@
       </p>
     @endif
 
-    {{-- Tombol & Love --}}
+    {{-- Tombol --}}
     <div class="flex items-center justify-between">
       <button class="bg-[#C1442E] text-white text-sm px-4 py-2 rounded-xl hover:bg-red-700 transition">
         Pesan Sekarang
